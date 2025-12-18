@@ -1,0 +1,64 @@
+.team-container {
+  padding: 40px;
+  text-align: center;
+}
+
+.team-container h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #222;
+}
+
+.team-list {
+  display: flex;
+  justify-content: center;
+  gap: 40px; /* kartlar arası boşluk */
+  flex-wrap: wrap;
+}
+
+.member {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 250px;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.member:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+}
+
+.member img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.member h3 {
+  margin: 10px 0 5px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.member p {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+.linkedin-link {
+  display: inline-block;
+  margin-top: 10px;
+  color: #0a66c2;
+  text-decoration: none;
+}
+
+.linkedin-icon {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}

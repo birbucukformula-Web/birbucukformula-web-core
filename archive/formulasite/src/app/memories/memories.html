@@ -1,0 +1,179 @@
+<!-- Hero Slideshow Section -->
+<section class="memories-hero">
+  <div class="hero-slideshow">
+    <div 
+      *ngFor="let slide of heroSlides; let i = index" 
+      class="hero-slide"
+      [class.active]="i === currentSlideIndex">
+      <img [src]="slide.image" [alt]="slide.title" class="hero-slide-image">
+      <div class="hero-slide-overlay"></div>
+      <div class="hero-slide-content">
+        <h1 class="hero-slide-title">{{ slide.title }}</h1>
+        <p class="hero-slide-subtitle">{{ slide.subtitle }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slideshow Controls -->
+  <div class="slideshow-controls">
+    <button class="slide-btn prev" (click)="prevSlide()" aria-label="Önceki">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="slide-btn next" (click)="nextSlide()" aria-label="Sonraki">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+
+  <!-- Slide Indicators -->
+  <div class="slide-indicators">
+    <button 
+      *ngFor="let slide of heroSlides; let i = index"
+      class="indicator"
+      [class.active]="i === currentSlideIndex"
+      (click)="goToSlide(i)"
+      [attr.aria-label]="'Slayt ' + (i + 1)">
+    </button>
+  </div>
+
+  <!-- Stats Overlay -->
+  <div class="hero-stats-overlay">
+    <div class="stat-item-overlay">
+      <span class="stat-number">{{ memories.length }}+</span>
+      <span class="stat-label">Anı</span>
+    </div>
+    <div class="stat-item-overlay">
+      <span class="stat-number">1</span>
+      <span class="stat-label">Yarış</span>
+    </div>
+    <div class="stat-item-overlay">
+      <span class="stat-number">2025</span>
+      <span class="stat-label">Formula Student</span>
+    </div>
+  </div>
+</section>
+
+<!-- Filter Section -->
+<section class="filter-section">
+  <div class="container">
+    <div class="filter-tabs">
+      <button 
+        *ngFor="let cat of categories"
+        class="filter-tab"
+        [class.active]="selectedCategory === cat.id"
+        (click)="filterMemories(cat.id)">
+        <span class="tab-icon">{{ cat.icon }}</span>
+        <span class="tab-name">{{ cat.name }}</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Timeline Section -->
+<section class="memories-timeline">
+  <div class="container">
+    <div *ngFor="let yearGroup of getMemoriesByYear(); let isFirst = first" class="year-section">
+      <!-- Year Header -->
+      <div class="year-header" [class.fade-in]="isFirst">
+        <div class="year-line"></div>
+        <h2 class="year-title">
+          <span class="year-badge">{{ yearGroup.year }}</span>
+        </h2>
+      </div>
+
+      <!-- Memories Grid -->
+      <div class="memories-grid">
+        <div 
+          *ngFor="let memory of yearGroup.memories; let i = index" 
+          class="memory-card card hover-lift"
+          [style.animation-delay]="(i * 0.1) + 's'">
+          
+          <!-- Image Container -->
+          <div class="memory-image-container">
+            <img 
+              [src]="memory.image" 
+              [alt]="memory.title" 
+              class="memory-image"
+              loading="lazy">
+            <div class="memory-overlay">
+              <div class="overlay-content">
+                <span class="memory-category">
+                  {{ getCategoryIcon(memory.category) }}
+                  {{ getCategoryName(memory.category) }}
+                </span>
+                <span class="memory-date">
+                  <i class="fas fa-calendar"></i>
+                  {{ memory.date }} {{ memory.year }}
+                </span>
+              </div>
+            </div>
+            <!-- Hover Gradient -->
+            <div class="hover-gradient"></div>
+          </div>
+
+          <!-- Content -->
+          <div class="memory-content">
+            <h3 class="memory-title">{{ memory.title }}</h3>
+            
+            <p class="memory-description">{{ memory.description }}</p>
+            
+            <div class="memory-footer">
+              <span class="memory-location" *ngIf="memory.location">
+                <i class="fas fa-map-marker-alt"></i>
+                {{ memory.location }}
+              </span>
+              <button class="view-btn">
+                <span>Detayları Gör</span>
+                <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card Number Badge -->
+          <div class="card-number">{{ memory.id }}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="filteredMemories.length === 0" class="empty-state">
+      <div class="empty-icon">📭</div>
+      <h3>Henüz Bu Kategoride Anı Yok</h3>
+      <p>Farklı bir kategori seçerek diğer anılarımıza göz atabilirsiniz.</p>
+      <button class="btn-primary" (click)="filterMemories('all')">
+        Tüm Anıları Göster
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-card glass-effect">
+      <div class="cta-content">
+        <h2 class="cta-title">
+          <span class="text-gradient">Bir Sonraki Anı Senin Olabilir!</span>
+        </h2>
+        <p class="cta-description">
+          Takımımıza katıl ve bu muhteşem yolculuğun bir parçası ol. 
+          Birlikte daha fazla başarı hikayesi yazalım.
+        </p>
+        <div class="cta-buttons">
+          <a routerLink="/team" class="btn btn-primary">
+            <i class="fas fa-users"></i>
+            Takıma Katıl
+          </a>
+          <a routerLink="/contact" class="btn btn-outline">
+            <i class="fas fa-envelope"></i>
+            İletişime Geç
+          </a>
+        </div>
+      </div>
+      <div class="cta-decoration">
+        <div class="decoration-circle"></div>
+        <div class="decoration-circle"></div>
+        <div class="decoration-circle"></div>
+      </div>
+    </div>
+  </div>
+</section>

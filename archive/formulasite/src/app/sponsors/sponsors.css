@@ -1,0 +1,35 @@
+.sponsors-section {
+  padding: 40px;
+  background: #f9f9f9;
+  text-align: center;
+}
+
+.sponsors-slider {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  margin: 20px auto;
+}
+
+.sponsor-track {
+  display: flex;
+  width: calc(200%); /* 2 kat genişlik, akış için */
+  animation: scroll 20s linear infinite;
+}
+
+.sponsor-track img {
+  height: 80px;
+  margin: 0 40px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  transition: filter 0.3s;
+}
+
+.sponsor-track img:hover {
+  filter: grayscale(0%);
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}

@@ -1,0 +1,87 @@
+/* Tema renkleri */
+:root {
+  --primary-color: #004080;    /* koyu mavi gibi bir renk */
+  --accent-color: #ff6b35;     /* turuncu vurgu gibi */
+  --bg-light: #f9f9f9;
+  --text-dark: #222;
+}
+
+/* Body */
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--text-dark);
+  margin: 0;
+  padding: 0;
+  background: #fff;
+}
+
+/* Hero */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 100px 20px;
+  background: var(--bg-light);
+}
+
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.hero-text h1 {
+  font-size: 64px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.hero-text .subtitle {
+  font-size: 24px;
+  margin: 20px 0;
+}
+
+.btn-primary {
+  display: inline-block;
+  background: var(--primary-color);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Sponsor Slider */
+.sponsors-section {
+  padding: 60px 0;
+  text-align: center;
+}
+
+.sponsor-slider {
+  overflow: hidden;
+}
+
+.sponsor-track {
+  display: inline-flex;
+  gap: 40px;
+  align-items: center;
+  animation: scroll 20s linear infinite;
+}
+
+.sponsor-track img {
+  height: 80px;
+  filter: grayscale(80%);
+  transition: filter .3s, transform .3s;
+}
+
+.sponsor-track img:hover {
+  filter: none;
+  transform: scale(1.1);
+}
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
